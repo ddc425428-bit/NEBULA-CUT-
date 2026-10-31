@@ -1,0 +1,44 @@
+姓名: nebula CUT Android安装包
+
+在……之上:
+workflow_dispatch:
+推:
+分支机构:
+      - 主要的
+
+权限:
+内容: 读
+
+工作:
+建立:
+run-on: ubuntu-22.04
+
+步骤:
+      - 姓名: 结帐
+uses: 操作/结帐@v4
+
+      - 姓名: 安装Java
+uses: 操作/设置-java@v4
+和……一起:
+分布: temurin
+java版: '17'
+
+      - 姓名: 设置Python
+uses: 操作/setup-python@v5
+和……一起:
+Python版: '3.11'
+
+      - 姓名: 安装相依性
+跑: |
+Python-m pip安装--upgrade pip
+PIP安装buildozer cython==0.29.37
+
+      - 姓名: 构建Android安装包
+跑: Buildozer android调试
+
+      - 姓名: 上传安装包
+uses: 操作/上载工件@v4
+和……一起:
+姓名: NEBULA-CUT-APK
+路径: bin/*.apk
+if-no-file-found: 误差
